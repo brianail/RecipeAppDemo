@@ -44,6 +44,7 @@ struct RecipeView: View {
                         VStack(alignment: .leading, spacing: 20) {
                             Text("Ingredientes")
                                 .font(.headline)
+                            
                                 
                             Text(recipe.ingredients)
                         }

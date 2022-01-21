@@ -48,7 +48,7 @@ struct AddRecipeView: View {
                     TextEditor(text: $directions)
                 }
             }
-            .toolbar {
+            .toolbar(content: {
                 ToolbarItem(placement:.navigationBarLeading){
                     Button{
                         dismiss()
@@ -66,6 +66,7 @@ struct AddRecipeView: View {
                             .navigationBarBackButtonHidden(true)
                     } label: {
                         Button{
+                            saveRecipe()
                             navigationToRecipe = true
                         } label: {
                             Label("Done",systemImage: "checkmark")
@@ -74,7 +75,7 @@ struct AddRecipeView: View {
                     }
                     .disabled(name.isEmpty)
                 }
-            }
+            })
             .navigationTitle("New Recipe")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -99,9 +100,11 @@ extension AddRecipeView {
         dateFormatter.dateFormat = "yyyy-mm-dd"
         
         let datePublished = dateFormatter.string(from: now)
+        
         print(datePublished)
         
         let recipe = Recipe(name: name, image: "", description: description, ingredients: ingredients, directions: directions, category: selectedCategory.rawValue, datePublished: datePublished, url: "")
+       
         recipesVM.addRecipe(recipe: recipe)
     }
 }
