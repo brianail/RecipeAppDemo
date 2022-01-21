@@ -13,7 +13,6 @@ struct TabBar: View {
             HomeView()
                 .tabItem {
                     Label("Home", systemImage: "house")
-                    
                 }
             
             CategoriesView()
